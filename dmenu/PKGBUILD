@@ -1,0 +1,25 @@
+# dmenu with fuzzymatch patch
+pkgname=dmenu
+pkgver=4.6
+pkgrel=1
+pkgdesc="A generic menu for X"
+url="http://tools.suckless.org/dmenu/"
+arch=('i686' 'x86_64')
+license=('MIT')
+depends=('sh' 'libxinerama' 'libxft' 'freetype2')
+source=("http://dl.suckless.org/tools/dmenu-$pkgver.tar.gz"
+        "http://tools.suckless.org/dmenu/patches/dmenu-fuzzymatch-$pkgver.diff")
+md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
+         '38e26b96d25b333bb641c6905697ce34')
+
+build() {
+  cd $pkgname-$pkgver
+  patch -i "$srcdir/dmenu-fuzzymatch-$pkgver.diff"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 FREETYPEINC=/usr/include/freetype2
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+}
