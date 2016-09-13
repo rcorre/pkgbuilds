@@ -1,0 +1,30 @@
+# Maintainer: Ryan Roden-Corrent
+
+_pkgname=mc
+pkgname=myrddin-git
+pkgver=20160911.b24a5a7
+pkgrel=1
+pkgdesc='Compiler and tools for the Myrddin programming language.'
+arch=('i686' 'x86_64')
+license=('MIT')
+url="https://myrlang.org/"
+source=("git://git.eigenstate.org/git/ori/mc.git")
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/$_pkgname"
+	git log -1 --format='%cd.%h' --date=short | tr -d -
+}
+
+build() {
+  cd "$srcdir/$_pkgname"
+  ./configure --prefix="$pkgdir/usr"
+  make
+}
+
+package() {
+  cd "$srcdir/$_pkgname"
+  make install
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$_pkgname/README.md"
+}
