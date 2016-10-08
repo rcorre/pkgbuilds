@@ -2,7 +2,7 @@
 
 _pkgname=mc
 pkgname=myrddin-git
-pkgver=20160924.606bce2
+pkgver=0.3939.606bce2
 pkgrel=1
 pkgdesc='Compiler and tools for the Myrddin programming language.'
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/$_pkgname"
-  git log -1 --format='%cd.%h' --date=short | tr -d -
+  echo "0.$(git rev-list --count HEAD).$(git describe --always)"
 }
 
 build() {
