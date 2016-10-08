@@ -32,4 +32,9 @@ package() {
   # avoid conflict with midnight commander
   # this manpage is for the compiler, called 6m
   mv "$pkgdir/usr/share/man/man1/"{mc,6m}.1
+
+  cd "$srcdir/$_reponame/support/vim/"
+  for dir in *; do
+    install -t "$pkgdir/usr/share/$_pkgname/vim/$dir" -Dm644 "$dir"/*.vim
+  done
 }
