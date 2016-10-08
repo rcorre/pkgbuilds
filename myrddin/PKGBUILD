@@ -2,7 +2,7 @@
 
 _pkgname=mc
 pkgname=myrddin-git
-pkgver=20160911.b24a5a7
+pkgver=20160924.606bce2
 pkgrel=1
 pkgdesc='Compiler and tools for the Myrddin programming language.'
 arch=('i686' 'x86_64')
