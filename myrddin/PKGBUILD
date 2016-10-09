@@ -3,7 +3,7 @@
 _reponame=mc
 _pkgname=myrddin
 pkgname=myrddin-git
-pkgver=0.3939.606bce2
+pkgver=0.3942.44bd7d2
 pkgrel=1
 pkgdesc='Compiler and tools for the Myrddin programming language.'
 arch=('i686' 'x86_64')
@@ -29,10 +29,6 @@ package() {
 
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
   install -Dm644 README.md "$pkgdir/usr/share/doc/$_pkgname/README.md"
-
-  # avoid conflict with midnight commander
-  # this manpage is for the compiler, called 6m
-  mv "$pkgdir/usr/share/man/man1/"{mc,6m}.1
 
   cd "$srcdir/$_reponame/support/vim/"
   for dir in *; do
