@@ -3,7 +3,7 @@
 _reponame=mc
 _pkgname=myrddin
 pkgname=myrddin-git
-pkgver=0.3942.44bd7d2
+pkgver=0.3945.5d433bd
 pkgrel=1
 pkgdesc='Compiler and tools for the Myrddin programming language.'
 arch=('i686' 'x86_64')
@@ -11,6 +11,7 @@ license=('MIT')
 url="https://myrlang.org/"
 source=("git://git.eigenstate.org/git/ori/mc.git")
 md5sums=('SKIP')
+install=myrddin.install
 
 pkgver() {
   cd "$srcdir/$_reponame"
