@@ -1,0 +1,22 @@
+# Maintainer: Ryan Roden-Corrent <ryan@rcorre.net>
+
+pkgname=swagger-codegen-cli
+pkgver=2.2.2
+pkgrel=1
+pkgdesc='Generate code from a swagger spec'
+arch=('i686' 'x86_64')
+license=('Apache')
+depends=('java-runtime')
+url="http://swagger.io"
+source=("http://central.maven.org/maven2/io/swagger/${pkgname}/${pkgver}/${pkgname}-${pkgver}.jar"
+        "swagger-codegen-cli")
+noextract=("${pkgname}-${pkgver}.jar")
+md5sums=('450d02aeab0dbadad0ef40e2a97d680e'
+         'cbb411074e8600c3ab231fce7ceea3c9')
+
+package() {
+  cd "${srcdir}"
+
+  install -Dm 644 *.jar "${pkgdir}/usr/share/java/${pkgname}/lib"
+  install -Dm 755 swagger-codegen-cli "${pkgdir}/usr/bin/swagger-codegen-cli"
+}
