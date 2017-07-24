@@ -1,0 +1,39 @@
+# Maintainer: Ryan Roden-Corrent <ryan@rcorre.net>
+# PKGBUILD based on drive-git
+
+pkgname=golint-git
+pkgver=r145.c5fb716
+pkgrel=1
+pkgdesc='Linter for go source code'
+arch=('x86_64' 'i686')
+url='https://github.com/golang/lint'
+_gourl="github.com/golang/lint"
+_binname="golint"
+license=('BSD')
+makedepends=('git' 'go')
+depends=('glibc')
+provides=('golint')
+conflicts=('golint')
+options=('!strip' '!emptydirs')
+source=()
+
+prepare() {
+  export GOPATH=$srcdir
+  mkdir -p "$GOPATH"
+  go get "$_gourl/$_binname"
+}
+
+pkgver() {
+  cd "$srcdir/src/$_gourl"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  mkdir -p "$pkgdir/usr/bin"
+  install -p -m755 "$srcdir/bin/$_binname" "$pkgdir/usr/bin"
+
+  mkdir -p "$pkgdir/usr/share/licenses/$pkgname"
+  install -m 0644 "$srcdir/src/$_gourl/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/"
+}
+
+# vim:set ts=2 sw=2 et:
