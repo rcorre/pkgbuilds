@@ -1,6 +1,6 @@
 # dmenu with fuzzymatch patch
 pkgname=dmenu
-pkgver=4.6
+pkgver=4.9
 pkgrel=1
 pkgdesc="A generic menu for X"
 url="http://tools.suckless.org/dmenu/"
@@ -8,9 +8,9 @@ arch=('i686' 'x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'freetype2')
 source=("http://dl.suckless.org/tools/dmenu-$pkgver.tar.gz"
-        "http://tools.suckless.org/dmenu/patches/dmenu-fuzzymatch-$pkgver.diff")
-md5sums=('6fedf081133bc0725cb040b3b8ac3fac'
-         '38e26b96d25b333bb641c6905697ce34')
+        "http://tools.suckless.org/dmenu/patches/fuzzymatch/dmenu-fuzzymatch-$pkgver.diff")
+md5sums=('9a537ec9a3a2ce9f08963d66b56cc030'
+         '10f1d55f242fd34aae6b72b51fd50915')
 
 build() {
   cd $pkgname-$pkgver
